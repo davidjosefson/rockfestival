@@ -13,7 +13,8 @@ ini_set('display_startup_errors',1);
                     $_POST['namn'],$_POST['instrument'],$_POST['fodelseort'],$_POST['fodelsear'],$_POST['msedan'],$_POST['trivia']);
         
         try{
-            $STH1 = $DBH->prepare("INSERT INTO Bandmedlem(Band, Namn, Instrument, Fodelseort, Fodelsear, MedlemSedan, Trivia) VALUES (?,?,?,?,?,?,?)");
+            $STH1 = $DBH->prepare("INSERT INTO Bandmedlem(Band, Namn, Instrument, Fodelseort, Fodelsear, MedlemSedan, Trivia)
+                                    VALUES (?,?,?,?,?,?,?)");
             $STH1->execute($postData); 
         }
         catch(PDOException $e) {

@@ -32,7 +32,7 @@
                                   <ul class="dropdown-menu" role="menu">
                                     <li><a href="funktionar.php">Funktionär</a></li>
                                     <li><a href="#">Säkerhetspass</a></li>
-                                    <li><a href="#">Scen</a></li>
+                                    <li><a href="scen.php">Scen</a></li>
                                     <li class="divider"></li>
                                     <li><a href="AddBand.php">Band</a></li>
                                     <li><a href="bandmedlem.php">Bandmedlem</a></li>
