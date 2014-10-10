@@ -7,7 +7,7 @@ ini_set('display_startup_errors',1);
     require('connect.php');
 
     //Create an array
-    $scenschemaTable = array();
+    $scenprogramTable = array();
 
     //SQL-query to get all data
     $STH = $DBH->query('Select t1.Dag, t1.Tid, t1.Scen, t2.namn AS Band from
@@ -30,7 +30,7 @@ ini_set('display_startup_errors',1);
 
     //Adds each row from the table to the array
     while($row = $STH->fetch()) {
-        $scenschemaTable[] = $row;
+        $scenprogramTable[] = $row;
     }
     
     //Create an array
@@ -72,7 +72,7 @@ ini_set('display_startup_errors',1);
 
     <?php if($isAdmin) : ?>
     <div class="col-md-12">
-        <h2 class="page-header">Scenschema med bokningar</h2>
+        <h2 class="page-header">Scenprogram med bokningar</h2>
 
         <table class="table table-hover">
             <thead>
@@ -84,7 +84,7 @@ ini_set('display_startup_errors',1);
                 </tr>
             </thead>
             <tbody>
-            <?php foreach ($scenschemaTable as $row) : ?>
+            <?php foreach ($scenprogramTable as $row) : ?>
                 <tr>
                     <td><?php echo $row['Dag']; ?></td>
                     <td><?php echo $row['Tid']; ?></td>
@@ -98,7 +98,7 @@ ini_set('display_startup_errors',1);
     <?php endif; ?>
     
 <div class="col-md-12">
-        <h2 class="page-header">Schema Lördag</h2>
+        <h2 class="page-header">Program Lördag</h2>
 
         <table class="table table-hover">
             <thead>
@@ -122,7 +122,7 @@ ini_set('display_startup_errors',1);
         </table>
     </div>
     <div class="col-md-12">
-        <h2 class="page-header">Schema Söndag</h2>
+        <h2 class="page-header">Program Söndag</h2>
 
         <table class="table table-hover">
             <thead>
