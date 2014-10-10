@@ -23,14 +23,14 @@
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                           </button>
-                            <a class="navbar-brand" href="#">Rockfestival.</a>
+                            <a class="navbar-brand" href="index.php">Rockfestival.</a>
                         </div>
                         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                             <ul class="nav navbar-nav">
                                 <li class="dropdown">
                                   <a href="#" class="dropdown-toggle" data-toggle="dropdown">Lägg till <span class="caret"></span></a>
                                   <ul class="dropdown-menu" role="menu">
-                                    <li><a href="#">Funktionär</a></li>
+                                    <li><a href="funktionar.php">Funktionär</a></li>
                                     <li><a href="#">Säkerhetspass</a></li>
                                     <li><a href="#">Scen</a></li>
                                     <li class="divider"></li>
@@ -42,7 +42,7 @@
                                 <li><a href="#">Band</a></li>
                                 <li><a href="#">Program</a></li>
                                 <li><a href="sakerhetslista.php">Säkerhetslista</a></li>
-                                <li><a href="#">Kontaktpersoner</a></li>
+                                <li><a href="kontaktpersoner.php">Kontaktpersoner</a></li>
                             </ul>                                         
                         </div>
                     </div>
