@@ -40,7 +40,7 @@
                                   </ul> 
                                 </li>
                                 <li><a href="#">Band</a></li>
-                                <li><a href="#">Program</a></li>
+                                <li><a href="schema.php">Program</a></li>
                                 <li><a href="sakerhetslista.php">Säkerhetslista</a></li>
                                 <li><a href="kontaktpersoner.php">Kontaktpersoner</a></li>
                             </ul>                                         
