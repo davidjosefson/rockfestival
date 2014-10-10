@@ -8,8 +8,6 @@ ini_set('display_startup_errors',1);
     
    //Make an SQL-insertion if _POST is used
     if($_SERVER['REQUEST_METHOD']== "POST") {
-        
-        
         $postData = array($_POST['band'], $_POST['scen'],$_POST['dag'],$_POST['scentid'],$_POST['starttid']);
         
         try{
@@ -20,9 +18,7 @@ ini_set('display_startup_errors',1);
             echo "SQL-error: ";
             echo $e->getMessage();
         }
-        
-        
-        
+
         echo "Success"; 
     }
 
@@ -33,7 +29,6 @@ ini_set('display_startup_errors',1);
     $timeArray = array();
     $bandTable = array();
 
-
     //SQL-querys
     $STHbandName = $DBH->query('SELECT BandID, Namn FROM Band');
     $STHscen = $DBH->query('SELECT Namn FROM Scen');
@@ -43,21 +38,20 @@ ini_set('display_startup_errors',1);
     FROM Band INNER JOIN Spelning ON Band.BandID = Spelning.Band ORDER BY Starttid asc;');    
 
     //Fill the arrays with data
-    while($row = $STHbandName->fetch()) { 
+    while($row = $STHbandName->fetch())
         $bandNameArray[] = $row;
-    }
-    while($row = $STHscen->fetch()) { 
+        
+    while($row = $STHscen->fetch()) 
         $scenArray[] = $row;
-    }    
-    while($row = $STHday->fetch()) { 
+
+    while($row = $STHday->fetch())
         $dagArray[] = $row;
-    }    
-    while($row = $STHtime->fetch()) { 
+
+    while($row = $STHtime->fetch()) 
         $tidArray[] = $row;
-    }    
-    while($row = $STHspelningTable->fetch()) {
+
+    while($row = $STHspelningTable->fetch())
         $spelningTable[] = $row;
-    }
 ?>
 
 <?php include('header.php'); ?>
@@ -132,8 +126,6 @@ ini_set('display_startup_errors',1);
                 <td><?php echo $row['Festivaldag']; ?></td>
                 <td><?php echo $row['Scentid']; ?></td>
                 <td><?php echo $row['Starttid']; ?></td>
-                
-                
             </tr>
          <?php endforeach; ?>   
         </tbody>
