@@ -49,7 +49,7 @@ ini_set('display_startup_errors',1);
         <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" enctype="application/x-www-form-urlencoded" role="form" />
             <div class="form-group">
                 <label class="control-label" for="band" >Band:</label>
-                <select name="band" id="band">  
+                <select name="band" id="band" class="form-control">  
                     <?php
                         $STHtest = $DBH->query('SELECT BandID, Namn FROM Band');   
                         while($row = $STHtest->fetch()) { 
