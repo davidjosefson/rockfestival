@@ -101,7 +101,7 @@ ini_set('display_startup_errors',1);
         </table>
     </div>
     <div class="col-md-10">
-        <h2 class="page-header">Funktionärer och antal bandmedlemar de ansvarar över</h2>
+        <h2 class="page-header">Funktionärer och antal bandmedlemmar de ansvarar över</h2>
 
         <table class="table table-hover">
             <thead>
