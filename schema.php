@@ -70,8 +70,9 @@ ini_set('display_startup_errors',1);
 <?php include('header.php'); ?>
 <?php include('navbar.php'); ?>
 
+    <?php if($isAdmin) : ?>
     <div class="col-md-12">
-        <h2 class="page-header">(Admin) Scenschema med bokningar</h2>
+        <h2 class="page-header">Scenschema med bokningar</h2>
 
         <table class="table table-hover">
             <thead>
@@ -94,7 +95,9 @@ ini_set('display_startup_errors',1);
             </tbody>
         </table>
     </div>
-    <div class="col-md-12">
+    <?php endif; ?>
+    
+<div class="col-md-12">
         <h2 class="page-header">Schema Lördag</h2>
 
         <table class="table table-hover">
