@@ -49,8 +49,7 @@ ini_set('display_startup_errors',1);
             <h2>Lägg till band</h2>
         </div>
 
-        <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>"
-              enctype="application/x-www-form-urlencoded" role="form" />
+        <form method="post" enctype="application/x-www-form-urlencoded" role="form" />
             <div class="form-group">
                 <label class="control-label" for="namn">Bandnamn:</label>
                 <input type="text" name="namn" maxlength="30" class="input-large form-control" id="namn"
