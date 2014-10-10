@@ -10,11 +10,11 @@ ini_set('display_startup_errors',1);
     if($_SERVER['REQUEST_METHOD']== "POST") {
         
         
-        $postData = array($_POST['namn'], $_POST['landskod'],$_POST['grundades'],$_POST['musikstil'],$_POST['trivia'],$_POST['funktionar']);
+        $postData = array($_POST['band'], $_POST['scen'],$_POST['dag'],$_POST['scentid'],$_POST['starttid']);
         
         try{
-            $STH1 = $DBH->prepare("INSERT INTO Band(Namn, Landskod, Grundades, Musikstil, Trivia, Kontaktperson) VALUES (?,?,?,?,?,?)");
-            $STH1->execute($postData); 
+            $STHinsert = $DBH->prepare("INSERT INTO Spelning(Band, Scen, Festivaldag, Scentid, Starttid) VALUES (?,?,?,?,?)");
+            $STHinsert->execute($postData); 
         }
         catch(PDOException $e) {
             echo "SQL-error: ";
@@ -94,8 +94,8 @@ ini_set('display_startup_errors',1);
                 </select>
            </div>
            <div class="form-group">
-                <label class="control-label" for="tid">Tid:</label>
-                <select name="tid" id="tid" class="form-control">  
+                <label class="control-label" for="scentid">Scentid:</label>
+                <select name="scentid" id="scentid" class="form-control">  
                     <?php foreach($tidArray as $tid) : ?>
                     <option value="<?php echo $tid['Tid']; ?>"><?php echo $tid['Tid']; ?></option>
                     <?php endforeach; ?>
@@ -103,7 +103,7 @@ ini_set('display_startup_errors',1);
            </div>
             <div class="form-group">
                 <label class="control-label" for="starttid">Starttid:</label>
-                <input type="text" name="starttid" pattern="[A-Za-z]{3}"  class="input-large form-control"
+                <input type="text" name="starttid"  class="input-large form-control"
                        id="starttid" placeholder="Ex: 16:30" title="Klockslag, t.ex 16:30" required/>
             </div>
 
