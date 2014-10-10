@@ -36,7 +36,7 @@
                                     <li class="divider"></li>
                                     <li><a href="AddBand.php">Band</a></li>
                                     <li><a href="bandmedlem.php">Bandmedlem</a></li>
-                                    <li><a href="#">Spelning</a></li>
+                                    <li><a href="spelning.php">Spelning</a></li>
                                   </ul> 
                                 </li>
                                 <li><a href="#">Band</a></li>
