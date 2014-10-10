@@ -35,7 +35,7 @@
                                     <li><a href="#">Scen</a></li>
                                     <li class="divider"></li>
                                     <li><a href="AddBand.php">Band</a></li>
-                                    <li><a href="#">Bandmedlem</a></li>
+                                    <li><a href="bandmedlem.php">Bandmedlem</a></li>
                                     <li><a href="#">Spelning</a></li>
                                   </ul> 
                                 </li>
