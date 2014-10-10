@@ -7,11 +7,7 @@ ini_set('display_startup_errors',1);
     require('connect.php');
     
     //Make an SQL-insertion if _POST is used
-    if($_SERVER['REQUEST_METHOD']== "POST") {
-       
-        echo $_POST['namn']; //<>[]{}
-        echo htmlspecialchars($_POST['namn']); //<>[]{}
-        
+    if($_SERVER['REQUEST_METHOD']== "POST") {        
         if (isset($_POST['sakerhetsbehorig']))
             $sakerhetsbehorig = 1;
         else
