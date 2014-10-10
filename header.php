@@ -34,7 +34,7 @@
                                     <li><a href="#">Säkerhetspass</a></li>
                                     <li><a href="#">Scen</a></li>
                                     <li class="divider"></li>
-                                    <li><a href="#">Band</a></li>
+                                    <li><a href="AddBand.php">Band</a></li>
                                     <li><a href="#">Bandmedlem</a></li>
                                     <li><a href="#">Spelning</a></li>
                                   </ul> 
