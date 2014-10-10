@@ -10,7 +10,7 @@ ini_set('display_startup_errors',1);
     if($_SERVER['REQUEST_METHOD']== "POST") {
         
         
-        $postData = array($_POST['namn'], $_POST['landskod'],$_POST['grundades'],$_POST['musikstil'],$_POST['trivia'],$_POST['Funktionar']);
+        $postData = array($_POST['namn'], $_POST['landskod'],$_POST['grundades'],$_POST['musikstil'],$_POST['trivia'],$_POST['funktionar']);
         
         try{
             $STH1 = $DBH->prepare("INSERT INTO Band(Namn, Landskod, Grundades, Musikstil, Trivia, Kontaktperson) VALUES (?,?,?,?,?,?)");
