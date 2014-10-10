@@ -41,7 +41,7 @@
                                 </li>
                                 <li><a href="#">Band</a></li>
                                 <li><a href="#">Program</a></li>
-                                <li><a href="#">Säkerhetslista</a></li>
+                                <li><a href="sakerhetslista.php">Säkerhetslista</a></li>
                                 <li><a href="#">Kontaktpersoner</a></li>
                             </ul>                                         
                         </div>
