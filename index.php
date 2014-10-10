@@ -44,6 +44,8 @@ ini_set('display_startup_errors',1);
 ?>
 
 <?php include('header.php'); ?>
+<?php include('navbar.php'); ?>
+
        <div class="col-md-4">
         <div class="page-header">
             <h2>Lägg till funktionär.</h2>

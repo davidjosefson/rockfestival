@@ -68,6 +68,7 @@ ini_set('display_startup_errors',1);
 ?>
 
 <?php include('header.php'); ?>
+<?php include('navbar.php'); ?>
 
     <div class="col-md-12">
         <h2 class="page-header">(Admin) Scenschema med bokningar</h2>
