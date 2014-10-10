@@ -8,10 +8,8 @@ ini_set('display_startup_errors',1);
     
     //Make an SQL-insertion if _POST is used
     if($_SERVER['REQUEST_METHOD']== "POST") {        
-        
                $postData = array($_POST['band'],
                     $_POST['namn'],$_POST['instrument'],$_POST['fodelseort'],$_POST['fodelsear'],$_POST['msedan'],$_POST['trivia']);
-        
         try{
             $STH1 = $DBH->prepare("INSERT INTO Bandmedlem(Band, Namn, Instrument, Fodelseort, Fodelsear, MedlemSedan, Trivia)
                                     VALUES (?,?,?,?,?,?,?)");
@@ -23,21 +21,23 @@ ini_set('display_startup_errors',1);
         }
     }
 
-    //Create an array
+    //Create arrays
+    $bandNameArray = array();
     $medlemTable = array();
 
-    //SQL-query to get all data from table Bandmedlem
-    $STH = $DBH->query('SELECT Band.Namn as Band, Bandmedlem.Namn, Instrument, Fodelseort, Fodelsear, MedlemSedan, Bandmedlem.Trivia
+    //SQL-querys
+    $STHbandName = $DBH->query('SELECT BandID, Namn FROM Band');
+    $STHbandmedlemTable = $DBH->query('SELECT Band.Namn as Band, Bandmedlem.Namn, Instrument, Fodelseort, Fodelsear, MedlemSedan, Bandmedlem.Trivia
                          FROM 
                          Bandmedlem LEFT JOIN Band
                          ON Band.BandID = Bandmedlem.band
                          ORDER BY Band');   
     
-    //Adds each row from the table to the array
-    while($row = $STH->fetch()) {
+    //Fill the arrays with data
+    while($row = $STHbandName->fetch())
+        $bandNameArray[] = $row;
+    while($row = $STHbandmedlemTable->fetch()) 
         $medlemTable[] = $row;
-    }
-
 ?>
 
 <?php include('header.php'); ?>
@@ -50,12 +50,9 @@ ini_set('display_startup_errors',1);
             <div class="form-group">
                 <label class="control-label" for="band" >Band:</label>
                 <select name="band" id="band" class="form-control">  
-                    <?php
-                        $STHtest = $DBH->query('SELECT BandID, Namn FROM Band');   
-                        while($row = $STHtest->fetch()) { 
-                            echo '<option value="' . $row['BandID'] . '"> ' . $row['Namn'] .     '</option>';  
-                        }
-                    ?>  
+                    <?php foreach($bandNameArray as $band) : ?>
+                        <option value="<?php echo $band['BandID']; ?>"><?php echo $band['Namn']; ?></option>
+                    <?php endforeach; ?>
                 </select>
             </div> 
            <div class="form-group">
