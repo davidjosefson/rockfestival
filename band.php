@@ -13,12 +13,14 @@ $bandTable = array();
 $STH = $DBH->query('SELECT Band.Namn, Band.Landskod FROM Band');
 
  while($row = $STH->fetch()) {
-        bandTable[] = $row;
+        $bandTable[] = $row;
     }
+
+?>
 
 <?php include('header.php'); ?>
 <?php include('navbar.php'); ?>
-?>
+
 <div class="col-md-12">
             <h2 class="page-header">Bokade band</h2>
             <table class="table table-hover">
@@ -32,9 +34,10 @@ $STH = $DBH->query('SELECT Band.Namn, Band.Landskod FROM Band');
                 <?php foreach ($bandTable as $row) : ?>
                     <tr>
                         <td><?php echo $row['Namn']; ?></td>
-                        <td><?php echo $row['Land']; ?></td>
+                        <td><?php echo $row['Landskod']; ?></td>
                     </tr>
                  <?php endforeach; ?>   
                 </tbody>
             </table>
 </div>
+<?php include('footer.php'); ?>
