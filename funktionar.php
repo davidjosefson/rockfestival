@@ -1,4 +1,4 @@
-<?php //test
+<?php
 error_reporting(E_ALL);
 ini_set('display_errors',1);
 ini_set('display_startup_errors',1);
@@ -13,17 +13,18 @@ ini_set('display_startup_errors',1);
         else
             $sakerhetsbehorig = 0;
         
-        $postData = array(htmlspecialchars($_POST['namn']), $_POST['personnummer'],$_POST['gatuadress'],$_POST['postnummer'],$_POST['postort'],$_POST['lon'], $sakerhetsbehorig);
+        $postData = array(htmlspecialchars($_POST['namn']), $_POST['personnummer'],$_POST['gatuadress'],$_POST['postnummer'],
+                                            $_POST['postort'],$_POST['lon'], $sakerhetsbehorig);
         
         try{
-            $STH1 = $DBH->prepare("INSERT INTO Funktionar(Namn, Personnummer, Gatuadress, Postnummer, Postort, Lon, Sakerhetsbehorig) VALUES (?,?,?,?,?,?,?)");
+            $STH1 = $DBH->prepare("INSERT INTO Funktionar(Namn, Personnummer, Gatuadress, Postnummer, Postort, Lon, Sakerhetsbehorig)
+                                    VALUES (?,?,?,?,?,?,?)");
             $STH1->execute($postData); 
         }
         catch(PDOException $e) {
             echo "SQL-error: ";
             echo $e->getMessage();
         }
-        echo "Success";
     }
 
     //Create an array
@@ -42,11 +43,11 @@ ini_set('display_startup_errors',1);
 <?php include('header.php'); ?>
 <?php include('navbar.php'); ?>
 
+    <!-- Displays a form for adding funktionärer-->
        <div class="col-md-4">
         <div class="page-header">
             <h2>Lägg till funktionär.</h2>
         </div>
-
         <form method="post" enctype="application/x-www-form-urlencoded" role="form" />
             <div class="form-group">
                 <label class="control-label" for="namn">Namn:</label>
@@ -86,15 +87,13 @@ ini_set('display_startup_errors',1);
                     </label>
                 </div>
             </div>
-
             <input type="submit" value="Skicka" class="btn btn-default" name="insert"/>
-
         </form>
     </div>
 
+<!-- Displays a with existing funktionärer-->
     <div class="col-md-12">
         <h2 class="page-header">Tidigare inlagda funktionärer</h2>
-
         <table class="table table-hover">
             <thead>
                 <tr>
@@ -108,22 +107,22 @@ ini_set('display_startup_errors',1);
                 </tr>
             </thead>
         <tbody>
-        <?php foreach ($funktionarTable as $row) : ?>
-            <tr>
-                <td><?php echo $row['Namn']; ?></td>
-                <td><?php echo $row['Personnummer']; ?></td>
-                <td><?php echo $row['Gatuadress']; ?></td>
-                <td><?php echo $row['Postnummer']; ?></td>
-                <td><?php echo $row['Postort']; ?></td>
-                <td><?php echo $row['Lon']; ?></td>
+            <?php foreach ($funktionarTable as $row) : ?>
+                <tr>
+                    <td><?php echo $row['Namn']; ?></td>
+                    <td><?php echo $row['Personnummer']; ?></td>
+                    <td><?php echo $row['Gatuadress']; ?></td>
+                    <td><?php echo $row['Postnummer']; ?></td>
+                    <td><?php echo $row['Postort']; ?></td>
+                    <td><?php echo $row['Lon']; ?></td>
 
-                <?php if($row['Sakerhetsbehorig'] == 1) :  ?>
-                    <td>Ja</td>
-                <?php else : ?>
-                    <td>Nej</td>
-                <?php endif; ?>
-            </tr>
-         <?php endforeach; ?>   
+                    <?php if($row['Sakerhetsbehorig'] == 1) :  ?>
+                        <td>Ja</td>
+                    <?php else : ?>
+                        <td>Nej</td>
+                    <?php endif; ?>
+                </tr>
+             <?php endforeach; ?>   
         </tbody>
     </table>
 </div>

@@ -36,7 +36,7 @@ ini_set('display_startup_errors',1);
     //Create an array
     $satTable = array();
 
-    //SQL-query to get all data from table Funktionar
+    //SQL-query to get all relevant data from table Band and Spelning for Saturday
     $STH = $DBH->query('SELECT Starttid, Namn Band, Landskod Land, Scen
                         FROM Band INNER JOIN Spelning
                         ON Band.BandID = Spelning.Band
@@ -53,7 +53,7 @@ ini_set('display_startup_errors',1);
     //Create an array
     $sunTable = array();
 
-    //SQL-query to get all data from table Funktionar
+    //SQL-query to get all relevant data from table Band and Spelning for Sunday
     $STH = $DBH->query('SELECT Starttid, Namn Band, Landskod Land, Scen
                         FROM Band INNER JOIN Spelning
                         ON Band.BandID = Spelning.Band
@@ -70,36 +70,36 @@ ini_set('display_startup_errors',1);
 <?php include('header.php'); ?>
 <?php include('navbar.php'); ?>
 
+<!-- Displays a table for the every available time on each stage-->
     <?php if($isAdmin) : ?>
-    <div class="col-md-12">
-        <h2 class="page-header">Scenprogram med bokningar</h2>
-
-        <table class="table table-hover">
-            <thead>
-                <tr>
-                    <th>Dag</th>
-                    <th>Tid</th>
-                    <th>Scen</th>
-                    <th>Band</th>
-                </tr>
-            </thead>
-            <tbody>
-            <?php foreach ($scenprogramTable as $row) : ?>
-                <tr>
-                    <td><?php echo $row['Dag']; ?></td>
-                    <td><?php echo $row['Tid']; ?></td>
-                    <td><?php echo $row['Scen']; ?></td>
-                    <td><?php echo $row['Band']; ?></td>
-                </tr>
-             <?php endforeach; ?>   
-            </tbody>
-        </table>
-    </div>
+        <div class="col-md-12">
+            <h2 class="page-header">Scenprogram med bokningar</h2>
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>Dag</th>
+                        <th>Tid</th>
+                        <th>Scen</th>
+                        <th>Band</th>
+                    </tr>
+                </thead>
+                <tbody>
+                <?php foreach ($scenprogramTable as $row) : ?>
+                    <tr>
+                        <td><?php echo $row['Dag']; ?></td>
+                        <td><?php echo $row['Tid']; ?></td>
+                        <td><?php echo $row['Scen']; ?></td>
+                        <td><?php echo $row['Band']; ?></td>
+                    </tr>
+                 <?php endforeach; ?>   
+                </tbody>
+            </table>
+        </div>
     <?php endif; ?>
     
-<div class="col-md-12">
+<!-- Displays a table for the festivalprogram for saturday-->
+    <div class="col-md-12">
         <h2 class="page-header">Program Lördag</h2>
-
         <table class="table table-hover">
             <thead>
                 <tr>
@@ -110,20 +110,21 @@ ini_set('display_startup_errors',1);
                 </tr>
             </thead>
             <tbody>
-            <?php foreach ($satTable as $row) : ?>
-                <tr>
-                    <td><?php echo $row['Starttid']; ?></td>
-                    <td><?php echo $row['Band']; ?></td>
-                    <td><?php echo $row['Land']; ?></td>
-                    <td><?php echo $row['Scen']; ?></td>
-                </tr>
-             <?php endforeach; ?>   
+                <?php foreach ($satTable as $row) : ?>
+                    <tr>
+                        <td><?php echo $row['Starttid']; ?></td>
+                        <td><?php echo $row['Band']; ?></td>
+                        <td><?php echo $row['Land']; ?></td>
+                        <td><?php echo $row['Scen']; ?></td>
+                    </tr>
+                 <?php endforeach; ?>   
             </tbody>
         </table>
     </div>
+
+<!-- Displays a table for the festivalprogram for sunday-->
     <div class="col-md-12">
         <h2 class="page-header">Program Söndag</h2>
-
         <table class="table table-hover">
             <thead>
                 <tr>
@@ -134,14 +135,14 @@ ini_set('display_startup_errors',1);
                 </tr>
             </thead>
             <tbody>
-            <?php foreach ($sunTable as $row) : ?>
-                <tr>
-                    <td><?php echo $row['Starttid']; ?></td>
-                    <td><?php echo $row['Band']; ?></td>
-                    <td><?php echo $row['Land']; ?></td>
-                    <td><?php echo $row['Scen']; ?></td>
-                </tr>
-             <?php endforeach; ?>   
+                <?php foreach ($sunTable as $row) : ?>
+                    <tr>
+                        <td><?php echo $row['Starttid']; ?></td>
+                        <td><?php echo $row['Band']; ?></td>
+                        <td><?php echo $row['Land']; ?></td>
+                        <td><?php echo $row['Scen']; ?></td>
+                    </tr>
+                 <?php endforeach; ?>   
             </tbody>
         </table>
     </div>

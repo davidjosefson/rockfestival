@@ -11,7 +11,7 @@ ini_set('display_startup_errors',1);
     $kontaktpersonTable2 = array();
     $kontaktpersonTable3 = array();
 
-    //SQL-query to get all data from table Funktionar
+    //SQL-query to get all relevant data from table Funktionar and Band
     $STH = $DBH->query('SELECT Band.Namn AS Band, Funktionar.Namn AS Kontaktperson
                         FROM Band INNER JOIN Funktionar
                         ON Band.Kontaktperson = Funktionar.FunktionarsID');   
@@ -21,7 +21,7 @@ ini_set('display_startup_errors',1);
         $kontaktpersonTable1[] = $row;
     }
     
-    //SQL-query to get all data from table Funktionar
+    //SQL-query to get all relevant data from table Funktionar and Band
     $STH = $DBH->query('SELECT Funktionar.Namn AS Kontaktperson, Band.Namn AS Band
                         FROM Band left JOIN Funktionar
                         ON Band.Kontaktperson = Funktionar.FunktionarsID
@@ -32,7 +32,7 @@ ini_set('display_startup_errors',1);
         $kontaktpersonTable2[] = $row;
     } 
 
-    //SQL-query to get all data from table Funktionar
+    //SQL-query to get all relevant data from table Funktionar, Band and Bandmedlem
     $STH = $DBH->query('SELECT Kontaktperson, SUM(AntalBandmedlemmar)
                         AS AntalBandmedlemmar FROM
                         (
@@ -62,6 +62,7 @@ ini_set('display_startup_errors',1);
 <?php include('header.php'); ?>
 <?php include('navbar.php'); ?>
 
+<!-- Displays a table with every bands contactperson-->
     <div class="col-md-10">
         <h2 class="page-header">Bandens kontaktpersoner</h2>
         <table class="table table-hover">
@@ -72,16 +73,17 @@ ini_set('display_startup_errors',1);
                 </tr>
             </thead>
             <tbody>
-            <?php foreach ($kontaktpersonTable1 as $row) : ?>
-                <tr>
-                    <td><?php echo $row['Band']; ?></td>
-                    <td><?php echo $row['Kontaktperson']; ?></td>
-                </tr>
-             <?php endforeach; ?>   
+                <?php foreach ($kontaktpersonTable1 as $row) : ?>
+                    <tr>
+                        <td><?php echo $row['Band']; ?></td>
+                        <td><?php echo $row['Kontaktperson']; ?></td>
+                    </tr>
+                 <?php endforeach; ?>   
             </tbody>
         </table>
     </div>
 
+<!-- Displays a table with the band that each contactperson is assigned to-->
     <div class="col-md-10">
         <h2 class="page-header">Kontaktpersoners band</h2>
         <table class="table table-hover">
@@ -92,18 +94,19 @@ ini_set('display_startup_errors',1);
                 </tr>
             </thead>
             <tbody>
-            <?php foreach ($kontaktpersonTable2 as $row) : ?>
-                <tr>
-                    <td><?php echo $row['Kontaktperson']; ?></td>
-                    <td><?php echo $row['Band']; ?></td>
-                </tr>
-             <?php endforeach; ?>   
+                <?php foreach ($kontaktpersonTable2 as $row) : ?>
+                    <tr>
+                        <td><?php echo $row['Kontaktperson']; ?></td>
+                        <td><?php echo $row['Band']; ?></td>
+                    </tr>
+                 <?php endforeach; ?>   
             </tbody>
         </table>
     </div>
+
+<!-- Displays a table with the amount of bandmembers each contactperson is assigned to-->
     <div class="col-md-10">
         <h2 class="page-header">Funktionärer och antal bandmedlemmar de ansvarar över</h2>
-
         <table class="table table-hover">
             <thead>
                 <tr>
@@ -112,12 +115,12 @@ ini_set('display_startup_errors',1);
                 </tr>
             </thead>
             <tbody>
-            <?php foreach ($kontaktpersonTable3 as $row) : ?>
-                <tr>
-                    <td><?php echo $row['Kontaktperson']; ?></td>
-                    <td><?php echo $row['AntalBandmedlemmar']; ?></td>
-                </tr>
-             <?php endforeach; ?>   
+                <?php foreach ($kontaktpersonTable3 as $row) : ?>
+                    <tr>
+                        <td><?php echo $row['Kontaktperson']; ?></td>
+                        <td><?php echo $row['AntalBandmedlemmar']; ?></td>
+                    </tr>
+                 <?php endforeach; ?>   
             </tbody>
         </table>
     </div>

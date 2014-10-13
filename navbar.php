@@ -26,7 +26,7 @@ if(isset($_GET['admin']) )
                             <li><a href="#">Säkerhetspass</a></li>
                             <li><a href="scen.php?admin">Scen</a></li>
                             <li class="divider"></li>
-                            <li><a href="AddBand.php?admin">Band</a></li>
+                            <li><a href="addband.php">Band</a></li>
                             <li><a href="bandmedlem.php?admin">Bandmedlem</a></li>
                             <li><a href="spelning.php?admin">Spelning</a></li>
                         </ul> 

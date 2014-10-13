@@ -9,7 +9,6 @@ ini_set('display_startup_errors',1);
    //Make an SQL-insertion if _POST is used
     if($_SERVER['REQUEST_METHOD']== "POST") {
         
-        
         $postData = array($_POST['namn'], $_POST['landskod'],$_POST['grundades'],$_POST['musikstil'],$_POST['trivia'],$_POST['funktionar']);
         
         try{
@@ -20,16 +19,12 @@ ini_set('display_startup_errors',1);
             echo "SQL-error: ";
             echo $e->getMessage();
         }
-        
-        
-        
-        echo "Success"; 
     }
 
     //Create an array
     $bandTable = array();
 
-    //SQL-query to get all data from table Funktionar
+    //SQL-query to get all data from table band with names of their contactpersons from table funktionar
     $STH = $DBH->query('SELECT Band.Namn, Landskod, Grundades, Musikstil, Trivia, Funktionar.Namn as Kontaktperson
                         FROM Band LEFT JOIN Funktionar
                         ON Band.Kontaktperson = Funktionar.FunktionarsID');   
@@ -38,17 +33,16 @@ ini_set('display_startup_errors',1);
     while($row = $STH->fetch()) {
         $bandTable[] = $row;
     }
-
 ?>
 
 <?php include('header.php'); ?>
 <?php include('navbar.php'); ?>
 
+    <!-- Displays a form for adding bands-->
        <div class="col-md-4">
         <div class="page-header">
             <h2>Lägg till band</h2>
         </div>
-
         <form method="post" enctype="application/x-www-form-urlencoded" role="form" />
             <div class="form-group">
                 <label class="control-label" for="namn">Bandnamn:</label>
@@ -70,8 +64,7 @@ ini_set('display_startup_errors',1);
                 <input type="text" name="musikstil" maxlength="50" class="input-large form-control"
                        id="musikstil" placeholder="Genre" title="Max 50 tecken" required/>
             </div>
-           
-             <div class="form-group">
+            <div class="form-group">
                  <label class="control-label" for="trivia" >Trivia:</label>
                  <textarea class="form-control" rows="3" name="trivia" id="trivia" required></textarea>
             </div>
@@ -86,14 +79,13 @@ ini_set('display_startup_errors',1);
                     ?>  
                 </select>
             </div>
-
             <input type="submit" value="Skicka" class="btn btn-default" name="insert"/>
-
         </form>
     </div>
+
+    <!-- Displays a table with existing bands-->
     <div class="col-md-12">
         <h2 class="page-header">Tidigare inlagda band</h2>
-
         <table class="table table-hover">
             <thead>
                 <tr>

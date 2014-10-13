@@ -27,11 +27,12 @@ ini_set('display_startup_errors',1);
 
     //SQL-querys
     $STHbandName = $DBH->query('SELECT BandID, Namn FROM Band');
-    $STHbandmedlemTable = $DBH->query('SELECT Band.Namn as Band, Bandmedlem.Namn, Instrument, Fodelseort, Fodelsear, MedlemSedan, Bandmedlem.Trivia
-                         FROM 
-                         Bandmedlem LEFT JOIN Band
-                         ON Band.BandID = Bandmedlem.band
-                         ORDER BY Band');   
+    $STHbandmedlemTable = $DBH->query('SELECT Band.Namn as Band, Bandmedlem.Namn, Instrument, Fodelseort, Fodelsear, MedlemSedan,
+                                        Bandmedlem.Trivia
+                                        FROM 
+                                        Bandmedlem LEFT JOIN Band
+                                        ON Band.BandID = Bandmedlem.band
+                                        ORDER BY Band');   
     
     //Fill the arrays with data
     while($row = $STHbandName->fetch())
@@ -43,11 +44,11 @@ ini_set('display_startup_errors',1);
 <?php include('header.php'); ?>
 <?php include('navbar.php'); ?>
 
+    <!-- Displays a form for adding bandmembers-->
        <div class="col-md-4">
         <div class="page-header">
             <h2>Lägg till bandmedlem</h2>
         </div>
-
         <form method="post" enctype="application/x-www-form-urlencoded" role="form" />
             <div class="form-group">
                 <label class="control-label" for="band" >Band:</label>
@@ -90,9 +91,9 @@ ini_set('display_startup_errors',1);
         </form>
     </div>
 
+    <!-- Displays a table with existing bandmembers-->
     <div class="col-md-12">
         <h2 class="page-header">Tidigare inlagda bandmedlemmar</h2>
-
         <table class="table table-hover">
             <thead>
                 <tr>
@@ -106,17 +107,17 @@ ini_set('display_startup_errors',1);
                 </tr>
             </thead>
         <tbody>
-        <?php foreach ($medlemTable as $row) : ?>
-            <tr>
-                <td><?php echo $row['Band']; ?></td>
-                <td><?php echo $row['Namn']; ?></td>
-                <td><?php echo $row['Instrument']; ?></td>
-                <td><?php echo $row['Fodelseort']; ?></td>
-                <td><?php echo $row['Fodelsear']; ?></td>
-                <td><?php echo $row['MedlemSedan']; ?></td> 
-                <td><?php echo $row['Trivia']; ?></td>
-            </tr>
-         <?php endforeach; ?>   
+            <?php foreach ($medlemTable as $row) : ?>
+                <tr>
+                    <td><?php echo $row['Band']; ?></td>
+                    <td><?php echo $row['Namn']; ?></td>
+                    <td><?php echo $row['Instrument']; ?></td>
+                    <td><?php echo $row['Fodelseort']; ?></td>
+                    <td><?php echo $row['Fodelsear']; ?></td>
+                    <td><?php echo $row['MedlemSedan']; ?></td> 
+                    <td><?php echo $row['Trivia']; ?></td>
+                </tr>
+             <?php endforeach; ?>   
         </tbody>
     </table>
 </div>
