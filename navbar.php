@@ -32,7 +32,7 @@ if(isset($_GET['admin']) )
                         </ul> 
                     </li>
                 <?php endif; ?>
-                <li><a href="#">Band</a></li>
+                <li><a href="band.php">Band</a></li>
                 <li><a href="program.php<?php if($isAdmin) {echo "?admin";}; ?>">Program</a></li>
                 <li><a href="sakerhetslista.php<?php if($isAdmin) {echo "?admin";}; ?>">Säkerhetslista</a></li>
                 <li><a href="kontaktpersoner.php<?php if($isAdmin) {echo "?admin";}; ?>">Kontaktpersoner</a></li>
