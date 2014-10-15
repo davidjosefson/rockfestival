@@ -5,7 +5,7 @@ if(isset($_GET['admin']) )
     $isAdmin = true;
 ?>
 
-<nav class="navbar navbar-default" role="navigation">
+<nav class="navbar navbar-<?php if($isAdmin) {echo "default";} else{echo "inverse";}; ?>" role="navigation">
     <div class="container-fluid">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
