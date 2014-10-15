@@ -42,13 +42,13 @@ ini_set('display_startup_errors',1);
                         ORDER BY Starttid asc');   
 
     //Fill the arrays with data
-    while($row = $STH->fetch())
+    while($row = $STHscenProgram->fetch())
         $scenprogramTable[] = $row;
-    while($row = $STH->fetch()) 
+    while($row = $STHthursday->fetch()) 
         $thuTable[] = $row;
-    while($row = $STH->fetch()) 
+    while($row = $STHfriday->fetch()) 
         $friTable[] = $row;
-    while($row = $STH->fetch()) 
+    while($row = $STHsaturday->fetch()) 
         $satTable[] = $row;
 
 ?>
