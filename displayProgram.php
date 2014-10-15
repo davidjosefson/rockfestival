@@ -28,11 +28,45 @@ ini_set('display_startup_errors',1);
 
                         order by Dag asc, Scen asc, Tid asc');   
 
+
+
     //Adds each row from the table to the array
     while($row = $STH->fetch()) {
         $scenprogramTable[] = $row;
     }
+
+    //Create an array
+    $thuTable = array();
+
+    //SQL-query to get all relevant data from table Band and Spelning for Thursday
+    $STH = $DBH->query('SELECT Starttid, Namn Band, Landskod Land, Scen
+                        FROM Band INNER JOIN Spelning
+                        ON Band.BandID = Spelning.Band
+                        WHERE Spelning.Festivaldag = "Torsdag"
+                        ORDER BY Starttid asc');   
+
+    //Adds each row from the table to the array
+    while($row = $STH->fetch()) {
+        $thuTable[] = $row;
+    }
+
     
+    //Create an array
+    $friTable = array();
+
+    //SQL-query to get all relevant data from table Band and Spelning for Friday
+    $STH = $DBH->query('SELECT Starttid, Namn Band, Landskod Land, Scen
+                        FROM Band INNER JOIN Spelning
+                        ON Band.BandID = Spelning.Band
+                        WHERE Spelning.Festivaldag = "Fredag"
+                        ORDER BY Starttid asc');   
+
+    //Adds each row from the table to the array
+    while($row = $STH->fetch()) {
+        $friTable[] = $row;
+    }
+
+
     //Create an array
     $satTable = array();
 
@@ -46,23 +80,6 @@ ini_set('display_startup_errors',1);
     //Adds each row from the table to the array
     while($row = $STH->fetch()) {
         $satTable[] = $row;
-    }
-
-
-    
-    //Create an array
-    $sunTable = array();
-
-    //SQL-query to get all relevant data from table Band and Spelning for Sunday
-    $STH = $DBH->query('SELECT Starttid, Namn Band, Landskod Land, Scen
-                        FROM Band INNER JOIN Spelning
-                        ON Band.BandID = Spelning.Band
-                        WHERE Spelning.Festivaldag = "Söndag"
-                        ORDER BY Starttid asc');   
-
-    //Adds each row from the table to the array
-    while($row = $STH->fetch()) {
-        $sunTable[] = $row;
     }
 
 ?>
@@ -96,6 +113,54 @@ ini_set('display_startup_errors',1);
             </table>
         </div>
     <?php endif; ?>
+<!-- Displays a table for the festivalprogram for thursday-->
+    <div class="col-md-12">
+        <h2 class="page-header">Program Torsdag</h2>
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Startar</th>
+                    <th>Band</th>
+                    <th>Land</th>
+                    <th>Scen</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach ($thuTable as $row) : ?>
+                    <tr>
+                        <td><?php echo $row['Starttid']; ?></td>
+                        <td><?php echo $row['Band']; ?></td>
+                        <td><?php echo $row['Land']; ?></td>
+                        <td><?php echo $row['Scen']; ?></td>
+                    </tr>
+                 <?php endforeach; ?>   
+            </tbody>
+        </table>
+    </div>
+<!-- Displays a table for the festivalprogram for Friday-->
+    <div class="col-md-12">
+        <h2 class="page-header">Program Fredag</h2>
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Startar</th>
+                    <th>Band</th>
+                    <th>Land</th>
+                    <th>Scen</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach ($friTable as $row) : ?>
+                    <tr>
+                        <td><?php echo $row['Starttid']; ?></td>
+                        <td><?php echo $row['Band']; ?></td>
+                        <td><?php echo $row['Land']; ?></td>
+                        <td><?php echo $row['Scen']; ?></td>
+                    </tr>
+                 <?php endforeach; ?>   
+            </tbody>
+        </table>
+    </div>
     
 <!-- Displays a table for the festivalprogram for saturday-->
     <div class="col-md-12">
@@ -122,29 +187,5 @@ ini_set('display_startup_errors',1);
         </table>
     </div>
 
-<!-- Displays a table for the festivalprogram for sunday-->
-    <div class="col-md-12">
-        <h2 class="page-header">Program Söndag</h2>
-        <table class="table table-hover">
-            <thead>
-                <tr>
-                    <th>Startar</th>
-                    <th>Band</th>
-                    <th>Land</th>
-                    <th>Scen</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php foreach ($sunTable as $row) : ?>
-                    <tr>
-                        <td><?php echo $row['Starttid']; ?></td>
-                        <td><?php echo $row['Band']; ?></td>
-                        <td><?php echo $row['Land']; ?></td>
-                        <td><?php echo $row['Scen']; ?></td>
-                    </tr>
-                 <?php endforeach; ?>   
-            </tbody>
-        </table>
-    </div>
 
 <?php include('footer.php'); ?>
