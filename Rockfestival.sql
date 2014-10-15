@@ -3,24 +3,16 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost:8889
--- Generation Time: Oct 09, 2014 at 07:00 PM
+-- Generation Time: Oct 15, 2014 at 05:23 PM
 -- Server version: 5.5.38
 -- PHP Version: 5.5.14
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
-
 --
 -- Database: `Rockfestival`
 --
-CREATE DATABASE IF NOT EXISTS `Rockfestival` DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
-USE `Rockfestival`;
 
 -- --------------------------------------------------------
 
@@ -28,7 +20,7 @@ USE `Rockfestival`;
 -- Table structure for table `Band`
 --
 
-CREATE TABLE IF NOT EXISTS `Band` (
+CREATE TABLE `Band` (
 `BandID` int(11) NOT NULL,
   `Namn` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
   `Landskod` varchar(5) COLLATE utf8_unicode_ci DEFAULT NULL,
@@ -36,7 +28,7 @@ CREATE TABLE IF NOT EXISTS `Band` (
   `Musikstil` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
   `Trivia` text COLLATE utf8_unicode_ci,
   `Kontaktperson` int(11) DEFAULT NULL
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=11 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=6 ;
 
 --
 -- Dumping data for table `Band`
@@ -55,7 +47,7 @@ INSERT INTO `Band` (`BandID`, `Namn`, `Landskod`, `Grundades`, `Musikstil`, `Tri
 -- Table structure for table `Bandmedlem`
 --
 
-CREATE TABLE IF NOT EXISTS `Bandmedlem` (
+CREATE TABLE `Bandmedlem` (
 `BandmedlemsID` int(11) NOT NULL,
   `Band` int(11) DEFAULT NULL,
   `Namn` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
@@ -65,7 +57,7 @@ CREATE TABLE IF NOT EXISTS `Bandmedlem` (
   `MedlemSedan` smallint(6) DEFAULT NULL,
   `Trivia` text COLLATE utf8_unicode_ci,
   `Bild` blob
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=19 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=10 ;
 
 --
 -- Dumping data for table `Bandmedlem`
@@ -88,17 +80,18 @@ INSERT INTO `Bandmedlem` (`BandmedlemsID`, `Band`, `Namn`, `Instrument`, `Fodels
 -- Table structure for table `Festivaldag`
 --
 
-CREATE TABLE IF NOT EXISTS `Festivaldag` (
+CREATE TABLE `Festivaldag` (
   `Dag` varchar(10) COLLATE utf8_unicode_ci NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `Festivaldag`
 --
 
 INSERT INTO `Festivaldag` (`Dag`) VALUES
+('Fredag'),
 ('Lördag'),
-('Söndag');
+('Torsdag');
 
 -- --------------------------------------------------------
 
@@ -106,7 +99,7 @@ INSERT INTO `Festivaldag` (`Dag`) VALUES
 -- Table structure for table `Funktionar`
 --
 
-CREATE TABLE IF NOT EXISTS `Funktionar` (
+CREATE TABLE `Funktionar` (
 `FunktionarsID` int(11) NOT NULL,
   `Namn` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
   `Personnummer` varchar(10) COLLATE utf8_unicode_ci DEFAULT NULL,
@@ -116,18 +109,17 @@ CREATE TABLE IF NOT EXISTS `Funktionar` (
   `Lon` int(11) DEFAULT NULL,
   `Sakerhetsbehorig` tinyint(1) DEFAULT NULL,
   `Mobilnummer` varchar(20) COLLATE utf8_unicode_ci NOT NULL
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=6 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=5 ;
 
 --
 -- Dumping data for table `Funktionar`
 --
 
 INSERT INTO `Funktionar` (`FunktionarsID`, `Namn`, `Personnummer`, `Gatuadress`, `Postnummer`, `Postort`, `Lon`, `Sakerhetsbehorig`, `Mobilnummer`) VALUES
-(1, 'Bengt Hansson', '901104', 'Stengatan 23', 21437, 'Malmö', 20000, 1, ''),
-(2, 'Bengt Hansson', '901104', 'Stengatan 23', 21437, 'Malmö', 20000, 1, '0709959943'),
-(3, 'Farid Naisan', '871104', 'Klengatan 22', 21437, 'Malmö', 22000, 0, '0469959943'),
-(4, 'Bodil Jansson ', '651104', 'Ohlengatan 21', 21437, 'Malmö', 24000, 1, '0708833343'),
-(5, 'Jimmie Tråkesson', '681104', 'Bengatan 22', 21437, 'Malmö', 25000, 0, '22222222');
+(1, 'Bengt Hansson', '901104', 'Stengatan 23', 21437, 'Malmö', 20000, 1, '0709959943'),
+(2, 'Farid Naisan', '871104', 'Klengatan 22', 21437, 'Malmö', 22000, 0, '0469959943'),
+(3, 'Bodil Jansson ', '651104', 'Ohlengatan 21', 21437, 'Malmö', 24000, 1, '0708833343'),
+(4, 'Jimmie Tråkesson', '681104', 'Bengatan 22', 21437, 'Malmö', 25000, 0, '22222222');
 
 -- --------------------------------------------------------
 
@@ -135,25 +127,25 @@ INSERT INTO `Funktionar` (`FunktionarsID`, `Namn`, `Personnummer`, `Gatuadress`,
 -- Table structure for table `Sakerhetspass`
 --
 
-CREATE TABLE IF NOT EXISTS `Sakerhetspass` (
+CREATE TABLE `Sakerhetspass` (
   `Scen` varchar(30) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
   `Festivaldag` varchar(10) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
   `Sakerhetstid` varchar(25) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
   `Funktionar` int(11) DEFAULT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `Sakerhetspass`
 --
 
 INSERT INTO `Sakerhetspass` (`Scen`, `Festivaldag`, `Sakerhetstid`, `Funktionar`) VALUES
-('Stora scenen', 'Lördag', '14.00-18.00', 4),
+('Stora scenen', 'Fredag', '18.00-22.00', 1),
 ('Stora scenen', 'Lördag', '18.00-22.00', 1),
-('Stora scenen', 'Lördag', '22.00-02.00', 4),
-('Stora scenen', 'Söndag', '18.00-22.00', 1),
-('Stora scenen', 'Söndag', '22.00-02.00', 3),
 ('Hawaii', 'Lördag', '22.00-02.00', 1),
-('Flexi', 'Söndag', '18.00-22.00', 3);
+('Stora scenen', 'Fredag', '22.00-02.00', 3),
+('Flexi', 'Torsdag', '18.00-22.00', 3),
+('Stora scenen', 'Lördag', '14.00-18.00', 4),
+('Stora scenen', 'Lördag', '22.00-02.00', 4);
 
 -- --------------------------------------------------------
 
@@ -161,9 +153,9 @@ INSERT INTO `Sakerhetspass` (`Scen`, `Festivaldag`, `Sakerhetstid`, `Funktionar`
 -- Table structure for table `Sakerhetstid`
 --
 
-CREATE TABLE IF NOT EXISTS `Sakerhetstid` (
+CREATE TABLE `Sakerhetstid` (
   `Tid` varchar(25) COLLATE utf8_unicode_ci NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `Sakerhetstid`
@@ -180,22 +172,22 @@ INSERT INTO `Sakerhetstid` (`Tid`) VALUES
 -- Table structure for table `Scen`
 --
 
-CREATE TABLE IF NOT EXISTS `Scen` (
+CREATE TABLE `Scen` (
   `Namn` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
   `PublikAntal` int(11) DEFAULT NULL,
   `PlatsBeskrivning` text COLLATE utf8_unicode_ci,
   `Bild` blob
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `Scen`
 --
 
 INSERT INTO `Scen` (`Namn`, `PublikAntal`, `PlatsBeskrivning`, `Bild`) VALUES
-('Stora scenen', 500, 'Framför Donken', NULL),
-('Lilla scenen', 50, 'Bakom Donken', NULL),
+('Flexi', 2, 'I ett hemligt tält', NULL),
 ('Hawaii', 123, 'Vid åsnan', NULL),
-('Flexi', 2, 'I ett hemligt tält', NULL);
+('Lilla scenen', 50, 'Bakom Donken', NULL),
+('Stora scenen', 500, 'Framför Donken', NULL);
 
 -- --------------------------------------------------------
 
@@ -203,9 +195,9 @@ INSERT INTO `Scen` (`Namn`, `PublikAntal`, `PlatsBeskrivning`, `Bild`) VALUES
 -- Table structure for table `Scentid`
 --
 
-CREATE TABLE IF NOT EXISTS `Scentid` (
+CREATE TABLE `Scentid` (
   `Tid` varchar(25) COLLATE utf8_unicode_ci NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `Scentid`
@@ -224,25 +216,25 @@ INSERT INTO `Scentid` (`Tid`) VALUES
 -- Table structure for table `Spelning`
 --
 
-CREATE TABLE IF NOT EXISTS `Spelning` (
+CREATE TABLE `Spelning` (
   `Band` int(11) DEFAULT NULL,
   `Scen` varchar(30) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
   `Festivaldag` varchar(10) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
   `Scentid` varchar(25) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
   `Starttid` time DEFAULT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `Spelning`
 --
 
 INSERT INTO `Spelning` (`Band`, `Scen`, `Festivaldag`, `Scentid`, `Starttid`) VALUES
+(1, 'Flexi', 'Fredag', '18.00-20.00', '19:00:00'),
 (1, 'Hawaii', 'Lördag', '14.00-16.00', '15:00:00'),
-(2, 'Stora scenen', 'Lördag', '14.00-16.00', '15:00:00'),
 (3, 'Hawaii', 'Lördag', '16.00-18.00', '16:30:00'),
+(5, 'Lilla scenen', 'Fredag', '18.00-20.00', '19:00:00'),
 (4, 'Lilla scenen', 'Lördag', '18.00-20.00', '18:40:00'),
-(5, 'Lilla scenen', 'Söndag', '18.00-20.00', '19:00:00'),
-(1, 'Flexi', 'Söndag', '18.00-20.00', '19:00:00');
+(2, 'Stora scenen', 'Lördag', '14.00-16.00', '15:00:00');
 
 --
 -- Indexes for dumped tables
@@ -310,17 +302,47 @@ ALTER TABLE `Spelning`
 -- AUTO_INCREMENT for table `Band`
 --
 ALTER TABLE `Band`
-MODIFY `BandID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=11;
+MODIFY `BandID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `Bandmedlem`
 --
 ALTER TABLE `Bandmedlem`
-MODIFY `BandmedlemsID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=19;
+MODIFY `BandmedlemsID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=10;
 --
 -- AUTO_INCREMENT for table `Funktionar`
 --
 ALTER TABLE `Funktionar`
-MODIFY `FunktionarsID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+MODIFY `FunktionarsID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `Band`
+--
+ALTER TABLE `Band`
+ADD CONSTRAINT `band_ibfk_1` FOREIGN KEY (`Kontaktperson`) REFERENCES `Funktionar` (`FunktionarsID`);
+
+--
+-- Constraints for table `Bandmedlem`
+--
+ALTER TABLE `Bandmedlem`
+ADD CONSTRAINT `bandmedlem_ibfk_1` FOREIGN KEY (`Band`) REFERENCES `Band` (`BandID`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `Sakerhetspass`
+--
+ALTER TABLE `Sakerhetspass`
+ADD CONSTRAINT `sakerhetspass_ibfk_1` FOREIGN KEY (`Scen`) REFERENCES `Scen` (`Namn`) ON DELETE CASCADE ON UPDATE CASCADE,
+ADD CONSTRAINT `sakerhetspass_ibfk_2` FOREIGN KEY (`Festivaldag`) REFERENCES `Festivaldag` (`Dag`) ON DELETE CASCADE ON UPDATE CASCADE,
+ADD CONSTRAINT `sakerhetspass_ibfk_3` FOREIGN KEY (`Sakerhetstid`) REFERENCES `Sakerhetstid` (`Tid`) ON DELETE CASCADE ON UPDATE CASCADE,
+ADD CONSTRAINT `sakerhetspass_ibfk_4` FOREIGN KEY (`Funktionar`) REFERENCES `Funktionar` (`FunktionarsID`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `Spelning`
+--
+ALTER TABLE `Spelning`
+ADD CONSTRAINT `spelning_ibfk_1` FOREIGN KEY (`Scen`) REFERENCES `Scen` (`Namn`) ON DELETE CASCADE ON UPDATE CASCADE,
+ADD CONSTRAINT `spelning_ibfk_2` FOREIGN KEY (`Band`) REFERENCES `Band` (`BandID`) ON DELETE CASCADE ON UPDATE CASCADE,
+ADD CONSTRAINT `spelning_ibfk_3` FOREIGN KEY (`Scentid`) REFERENCES `Scentid` (`Tid`) ON DELETE CASCADE ON UPDATE CASCADE,
+ADD CONSTRAINT `spelning_ibfk_4` FOREIGN KEY (`Festivaldag`) REFERENCES `Festivaldag` (`Dag`) ON DELETE CASCADE ON UPDATE CASCADE;
