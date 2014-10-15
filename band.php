@@ -48,7 +48,7 @@ ini_set('display_startup_errors',1);
                             if($medlem['Band'] == $band['BandID']) :
                     ?>
                     <div class="row">
-                        <div class="col-md-5 col-md-offset-2">
+                        <div class="col-md-5 col-md-offset-1">
                             <div class="panel panel-default">
                                 <div class="panel-heading">
                                     <a data-toggle="collapse" data-parent="#medlem" href="#<?php echo $band['BandID']; ?>-<?php echo $medlem['BandmedlemsID']; ?>">
