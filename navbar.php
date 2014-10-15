@@ -22,21 +22,21 @@ if(isset($_GET['admin']) )
                     <li class="dropdown">
                       <a href="#" class="dropdown-toggle" data-toggle="dropdown">Lägg till <span class="caret"></span></a>
                       <ul class="dropdown-menu" role="menu">
-                            <li><a href="funktionar.php?admin">Funktionär</a></li>
+                            <li><a href="addFunktionar.php?admin">Funktionär</a></li>
                             <li><a href="#">Säkerhetspass</a></li>
-                            <li><a href="scen.php?admin">Scen</a></li>
+                            <li><a href="addScen.php?admin">Scen</a></li>
                             <li class="divider"></li>
-                            <li><a href="addband.php?admin">Band</a></li>
-                            <li><a href="bandmedlem.php?admin">Bandmedlem</a></li>
-                            <li><a href="spelning.php?admin">Spelning</a></li>
+                            <li><a href="addBand.php?admin">Band</a></li>
+                            <li><a href="addBandmedlem.php?admin">Bandmedlem</a></li>
+                            <li><a href="addSpelning.php?admin">Spelning</a></li>
                         </ul> 
                     </li>
                 <?php endif; ?>
-                <li><a href="band.php<?php if($isAdmin) {echo "?admin";}; ?>">Band</a></li>
-                <li><a href="program.php<?php if($isAdmin) {echo "?admin";}; ?>">Program</a></li>
+                <li><a href="displayBand.php<?php if($isAdmin) {echo "?admin";}; ?>">Band</a></li>
+                <li><a href="displayProgram.php<?php if($isAdmin) {echo "?admin";}; ?>">Program</a></li>
                 <?php if ($isAdmin) : ?>
-                    <li><a href="sakerhetslista.php<?php if($isAdmin) {echo "?admin";}; ?>">Säkerhetslista</a></li>
-                    <li><a href="kontaktpersoner.php<?php if($isAdmin) {echo "?admin";}; ?>">Kontaktpersoner</a></li>
+                    <li><a href="displaySakerhetslista.php<?php if($isAdmin) {echo "?admin";}; ?>">Säkerhetslista</a></li>
+                    <li><a href="displayKontaktpersoner.php<?php if($isAdmin) {echo "?admin";}; ?>">Kontaktpersoner</a></li>
                 <?php endif; ?>
             </ul>                                         
         </div>
