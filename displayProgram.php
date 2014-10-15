@@ -6,81 +6,50 @@ ini_set('display_startup_errors',1);
     //Connecting to DB
     require('connect.php');
 
-    //Create an array
+    //Create arrays
     $scenprogramTable = array();
+    $thuTable = array();
+    $friTable = array();
+    $satTable = array();   
 
-    //SQL-query to get all data
-    $STH = $DBH->query('Select t1.Dag, t1.Tid, t1.Scen, t2.namn AS Band from
-
+    //SQL-querys
+    $STHscenProgram = $DBH->query('Select t1.Dag, t1.Tid, t1.Scen, t2.namn AS Band from
                         (SELECT Dag, Scentid.Tid , Scen.Namn as Scen
                         FROM Scen, Festivaldag, Scentid)as t1
-
                         left join
-
                         (SELECT  Spelning.Scentid, Spelning.Festivaldag, 
                         Namn, Landskod, Musikstil, Spelning.Scen
                         FROM Band INNER JOIN Spelning 
                         ON Band.BandID = Spelning.Band) as t2
-
                         ON t1.Dag = t2.Festivaldag
                         AND t1.Scen = t2.Scen
                         AND t1.Tid = t2.Scentid
-
-                        order by Dag asc, Scen asc, Tid asc');   
-
-
-
-    //Adds each row from the table to the array
-    while($row = $STH->fetch()) {
-        $scenprogramTable[] = $row;
-    }
-
-    //Create an array
-    $thuTable = array();
-
-    //SQL-query to get all relevant data from table Band and Spelning for Thursday
-    $STH = $DBH->query('SELECT Starttid, Namn Band, Landskod Land, Scen
+                        order by Dag asc, Scen asc, Tid asc');  
+    $STHthursday = $DBH->query('SELECT Starttid, Namn Band, Landskod Land, Scen
                         FROM Band INNER JOIN Spelning
                         ON Band.BandID = Spelning.Band
                         WHERE Spelning.Festivaldag = "Torsdag"
                         ORDER BY Starttid asc');   
-
-    //Adds each row from the table to the array
-    while($row = $STH->fetch()) {
-        $thuTable[] = $row;
-    }
-
-    
-    //Create an array
-    $friTable = array();
-
-    //SQL-query to get all relevant data from table Band and Spelning for Friday
-    $STH = $DBH->query('SELECT Starttid, Namn Band, Landskod Land, Scen
+    $STHfriday = $DBH->query('SELECT Starttid, Namn Band, Landskod Land, Scen
                         FROM Band INNER JOIN Spelning
                         ON Band.BandID = Spelning.Band
                         WHERE Spelning.Festivaldag = "Fredag"
                         ORDER BY Starttid asc');   
-
-    //Adds each row from the table to the array
-    while($row = $STH->fetch()) {
-        $friTable[] = $row;
-    }
-
-
-    //Create an array
-    $satTable = array();
-
-    //SQL-query to get all relevant data from table Band and Spelning for Saturday
-    $STH = $DBH->query('SELECT Starttid, Namn Band, Landskod Land, Scen
+    $STHsaturday = $DBH->query('SELECT Starttid, Namn Band, Landskod Land, Scen
                         FROM Band INNER JOIN Spelning
                         ON Band.BandID = Spelning.Band
                         WHERE Spelning.Festivaldag = "Lördag"
                         ORDER BY Starttid asc');   
 
-    //Adds each row from the table to the array
-    while($row = $STH->fetch()) {
+    //Fill the arrays with data
+    while($row = $STH->fetch())
+        $scenprogramTable[] = $row;
+    while($row = $STH->fetch()) 
+        $thuTable[] = $row;
+    while($row = $STH->fetch()) 
+        $friTable[] = $row;
+    while($row = $STH->fetch()) 
         $satTable[] = $row;
-    }
 
 ?>
 
