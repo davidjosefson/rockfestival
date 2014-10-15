@@ -38,44 +38,43 @@ ini_set('display_startup_errors',1);
               </h4>
             </div>
             <div id="<?php echo $band['BandID']; ?>" class="panel-collapse collapse">
-              <div class="panel-body">
-                  <p><strong>Land:</strong> <?php echo $band['Landskod']; ?></p>
-                  <p><strong>Grundades:</strong> <?php echo $band['Grundades']; ?></p>
-                  <p><strong>Musikstil:</strong> <?php echo $band['Musikstil']; ?></p>
-                  <p><strong>Musikstil:</strong> <?php echo $band['Trivia']; ?></p>
-                  <p class="vertical-offset-3"><strong>Bandmedlemmar:</strong></p>
-                  <?php foreach($medlemTable as $medlem) : 
+                <div class="panel-body">
+                    <p><strong>Land:</strong> <?php echo $band['Landskod']; ?></p>
+                    <p><strong>Grundades:</strong> <?php echo $band['Grundades']; ?></p>
+                    <p><strong>Musikstil:</strong> <?php echo $band['Musikstil']; ?></p>
+                    <p><strong>Musikstil:</strong> <?php echo $band['Trivia']; ?></p>
+                    <p><strong>Bandmedlemmar:</strong></p>
+                    <?php foreach($medlemTable as $medlem) : 
                             if($medlem['Band'] == $band['BandID']) :
-                  ?>
-                  <div class="row">
-                        <div class="col-md-5">
-                          <div class="panel panel-default">
-                            <div class="panel-heading">
-                              <h5 class="panel-title">
-                                <a data-toggle="collapse" data-parent="#medlem" href="#<?php echo $band['BandID']; ?>-<?php echo $medlem['BandmedlemsID']; ?>">
-                                  <?php echo $medlem['Namn']; ?>
-                                </a>
-                              </h5>
-                            </div>
-                            <div id="<?php echo $band['BandID']; ?>-<?php echo $medlem['BandmedlemsID']; ?>" class="panel-collapse collapse">
-                                <div class="panel-body">
-                                    <p><strong>Födelseår:</strong> <?php echo $medlem['Fodelsear']; ?></p>
-                                    <p><strong>Födelseort:</strong> <?php echo $medlem['Fodelseort']; ?></p>
-                                    <p><strong>Instrument:</strong> <?php echo $medlem['Instrument']; ?></p>
-                                    <p><strong>Medlem i <em><?php echo $band['Namn']; ?></em> sedan:</strong> <?php echo $medlem['MedlemSedan']; ?></p>
-                                    <p><strong>Trivia:</strong> <?php echo $medlem['Trivia']; ?></p>
+                    ?>
+                    <div class="row">
+                        <div class="col-md-5 col-md-offset-2">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <a data-toggle="collapse" data-parent="#medlem" href="#<?php echo $band['BandID']; ?>-<?php echo $medlem['BandmedlemsID']; ?>">
+                                        <?php echo $medlem['Namn']; ?>
+                                    </a>
+                                </div>
+                                <div id="<?php echo $band['BandID']; ?>-<?php echo $medlem['BandmedlemsID']; ?>" class="panel-collapse collapse">
+                                    <div class="panel-body">
+                                        <p><strong>Födelseår:</strong> <?php echo $medlem['Fodelsear']; ?></p>
+                                        <p><strong>Födelseort:</strong> <?php echo $medlem['Fodelseort']; ?></p>
+                                        <p><strong>Instrument:</strong> <?php echo $medlem['Instrument']; ?></p>
+                                        <p><strong>Medlem i <em><?php echo $band['Namn']; ?></em> sedan:</strong> <?php echo $medlem['MedlemSedan']; ?></p>
+                                        <p><strong>Trivia:</strong> <?php echo $medlem['Trivia']; ?></p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
                     </div>
                   
                   <?php endif; 
                     endforeach; ?>
                   
-              </div>
+                </div>
             </div>
-          </div>
+        </div>
+        
         <? endforeach; ?>
 
     </div>    
