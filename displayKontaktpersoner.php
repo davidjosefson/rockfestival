@@ -6,34 +6,20 @@ ini_set('display_startup_errors',1);
     //Connecting to DB
     require('connect.php');
 
-    //Create an array
-    $kontaktpersonTable1 = array();
-    $kontaktpersonTable2 = array();
-    $kontaktpersonTable3 = array();
+    //Create arrays
+    $bandKontaktTable = array();
+    $kontaktBandTable = array();
+    $numberOfMembersTable = array();
 
-    //SQL-query to get all relevant data from table Funktionar and Band
-    $STH = $DBH->query('SELECT Band.Namn AS Band, Funktionar.Namn AS Kontaktperson
+    //SQL-querys
+    $STHbandKontakt = $DBH->query('SELECT Band.Namn AS Band, Funktionar.Namn AS Kontaktperson
                         FROM Band INNER JOIN Funktionar
                         ON Band.Kontaktperson = Funktionar.FunktionarsID');   
-
-    //Adds each row from the table to the array
-    while($row = $STH->fetch()) {
-        $kontaktpersonTable1[] = $row;
-    }
-    
-    //SQL-query to get all relevant data from table Funktionar and Band
-    $STH = $DBH->query('SELECT Funktionar.Namn AS Kontaktperson, Band.Namn AS Band
+    $STHkontaktBand = $DBH->query('SELECT Funktionar.Namn AS Kontaktperson, Band.Namn AS Band
                         FROM Band left JOIN Funktionar
                         ON Band.Kontaktperson = Funktionar.FunktionarsID
                         Order by Kontaktperson');   
-
-    //Adds each row from the table to the array
-    while($row = $STH->fetch()) {
-        $kontaktpersonTable2[] = $row;
-    } 
-
-    //SQL-query to get all relevant data from table Funktionar, Band and Bandmedlem
-    $STH = $DBH->query('SELECT Kontaktperson, SUM(AntalBandmedlemmar)
+    $STHnumberMembers = $DBH->query('SELECT Kontaktperson, SUM(AntalBandmedlemmar)
                         AS AntalBandmedlemmar FROM
                         (
                         SELECT Kontaktperson, AntalBandmedlemmar FROM
@@ -51,11 +37,14 @@ ini_set('display_startup_errors',1);
                         ) as T1
 
                         Group by Kontaktperson;');   
-
-    //Adds each row from the table to the array
-    while($row = $STH->fetch()) {
-        $kontaktpersonTable3[] = $row;
-    }
+    
+    //Fill the arrays with data
+    while($row = $STHbandKontakt->fetch()) 
+        $bandKontaktTable[] = $row;
+    while($row = $STHkontaktBand->fetch()) 
+        $kontaktBandTable[] = $row;
+    while($row = $STHnumberMembers->fetch()) 
+        $numberOfMembersTable[] = $row;
 
 ?>
 
@@ -73,7 +62,7 @@ ini_set('display_startup_errors',1);
                 </tr>
             </thead>
             <tbody>
-                <?php foreach ($kontaktpersonTable1 as $row) : ?>
+                <?php foreach ($bandKontaktTable as $row) : ?>
                     <tr>
                         <td><?php echo $row['Band']; ?></td>
                         <td><?php echo $row['Kontaktperson']; ?></td>
@@ -94,7 +83,7 @@ ini_set('display_startup_errors',1);
                 </tr>
             </thead>
             <tbody>
-                <?php foreach ($kontaktpersonTable2 as $row) : ?>
+                <?php foreach ($kontaktBandTable as $row) : ?>
                     <tr>
                         <td><?php echo $row['Kontaktperson']; ?></td>
                         <td><?php echo $row['Band']; ?></td>
@@ -115,7 +104,7 @@ ini_set('display_startup_errors',1);
                 </tr>
             </thead>
             <tbody>
-                <?php foreach ($kontaktpersonTable3 as $row) : ?>
+                <?php foreach ($numberOfMembersTable as $row) : ?>
                     <tr>
                         <td><?php echo $row['Kontaktperson']; ?></td>
                         <td><?php echo $row['AntalBandmedlemmar']; ?></td>
