@@ -7,11 +7,6 @@
     </div>
     
     <div class="col-md-6">
-        <div class="progress">
-            <div class="progress-bar progress-bar-striped active"  role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
-                <span class="sr-only">45% Complete</span>
-            </div>
-        </div>        
         <p>Hej Administratör!</p>
         <p>Här kan du se allt som de vanliga festivalbesökarna kan se - plus att du kan lägga till ny information.</p>
         <p>Vi litar på att du inte missbrukar makten du har givits till att utföra onda handlingar.</p>
@@ -24,11 +19,6 @@
                 Spiderman
             </footer>
         </blockquote>
-        <div class="progress">
-            <div class="progress-bar progress-bar-striped active"  role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
-                <span class="sr-only">45% Complete</span>
-            </div>
-        </div>                
     </div>
 
 <?php include('footer.php'); ?>
