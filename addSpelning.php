@@ -62,7 +62,7 @@ ini_set('display_startup_errors',1);
             <h2>Lägg till spelning</h2>
         </div>
 
-        <form method="post" enctype="application/x-www-form-urlencoded" role="form" />
+        <form method="post" enctype="application/x-www-form-urlencoded" role="form">
             <div class="form-group">
                 <label class="control-label" for="band">Band:</label>
                 <select name="band" id="band" class="form-control">  

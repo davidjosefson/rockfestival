@@ -48,7 +48,7 @@ ini_set('display_startup_errors',1);
         <div class="page-header">
             <h2>Lägg till funktionär.</h2>
         </div>
-        <form method="post" enctype="application/x-www-form-urlencoded" role="form" />
+        <form method="post" enctype="application/x-www-form-urlencoded" role="form">
             <div class="form-group">
                 <label class="control-label" for="namn">Namn:</label>
                 <input type="text" name="namn" maxlength="50" class="input-large form-control" id="namn"
