@@ -23,7 +23,6 @@ if(isset($_GET['admin']) )
                       <a href="#" class="dropdown-toggle" data-toggle="dropdown">Lägg till <span class="caret"></span></a>
                       <ul class="dropdown-menu" role="menu">
                             <li><a href="addFunktionar.php?admin">Funktionär</a></li>
-                            <li><a href="#">Säkerhetspass</a></li>
                             <li><a href="addScen.php?admin">Scen</a></li>
                             <li class="divider"></li>
                             <li><a href="addBand.php?admin">Band</a></li>
